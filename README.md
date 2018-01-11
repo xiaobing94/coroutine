@@ -6,9 +6,9 @@
 2. [实现简单协程库](doc/ucontext_coroutine2.md)
 3. [使用协程库并实现简单非阻塞socket服务器](doc/ucontext_coroutine2.md)
 ## 文件说明
-coroutine.h  协程头文件
-coroutine.c  协程实现
-test_simple.c 简单测试
-test_socket.c 非阻塞socket测试
-client.py 单线程socket，用户输入测试
-client_thread.py 多线程socket测试
+- coroutine.h  协程头文件
+- coroutine.c  协程实现 
+- test_simple.c  简单测试
+- test_socket.c  非阻塞socket测试
+- client.py  单线程socket，用户输入测试
+- client_thread.py  多线程socket测试
