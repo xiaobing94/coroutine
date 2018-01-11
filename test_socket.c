@@ -49,14 +49,9 @@ void accept_conn(int sock_fd, schedule *s, int corourine_ids[], coroutine_func h
     int connfd = 0;
     while(1)
     {
-        // printf("accept!\n");
-        // connfd = accept(sock_fd,(struct sockaddr*)NULL,NULL);
-        int flags = fcntl(sock_fd, F_GETFL, 0);  
-        fcntl(sock_fd, F_SETFL, flags|O_NONBLOCK);
         connfd = accept(sock_fd,(struct sockaddr*)NULL,NULL);
         if(connfd > 0)
         {
-            puts("conn\n");
             int args[] = {sock_fd, connfd};
             int id = coroutine_create(s, handle, (void *)args);
             int i=0;
@@ -85,7 +80,6 @@ void accept_conn(int sock_fd, schedule *s, int corourine_ids[], coroutine_func h
                 }
                 coroutine_resume(s, cid);
             }
-            //coroutine_resume(s, id);
         }
     }
 }
@@ -96,12 +90,9 @@ void handle_conn(schedule *s, void *args)
     int connfd = arg_arr[1];
     int n = 0;
     char buff[MAXLINE] = {0};
-    // puts("handle\n");
     while(1)
     {
-        // printf("while:%d\n", connfd);
         n = recv(connfd, buff, 10, MSG_DONTWAIT);
-        // printf("recv_n:%d\n", n);
         if(n <= 0)
         {
             coroutine_yield(s);

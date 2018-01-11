@@ -8,7 +8,6 @@ while True:
     msg = raw_input(">>:")
     s.sendall(msg)
     data = s.recv(1024)
-    #print(data)
  
     print('Received', repr(data))
 s.close()
