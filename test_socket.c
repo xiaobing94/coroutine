@@ -99,11 +99,11 @@ void handle_conn(schedule *s, void *args)
         }else {
             printf("connfd:%d,recv_data:%s\n", connfd, buff);
             int send_len = send(connfd, buff, strlen(buff), MSG_DONTWAIT);
-            memset(buff, 0, MAXLINE);
             if(strcmp(buff, "exit") == 0)
             {
                 break;
             }
+            memset(buff, 0, MAXLINE);
         }
     }
     close(connfd);
